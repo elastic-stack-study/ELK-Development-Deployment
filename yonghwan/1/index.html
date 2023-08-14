@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Elasticsearch Search</title>
+</head>
+<body>
+  <h1>Elasticsearch Search</h1>
+  <input type="text" id="searchInput" placeholder="Enter your search query">
+  <button id="searchButton">Search</button>
+  <div id="results"></div>
+
+  <script>
+    const elasticsearchURL = "http://localhost:9200"; // Default URL
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const searchButton = document.getElementById("searchButton");
+      const searchInput = document.getElementById("searchInput");
+      const resultsDiv = document.getElementById("results");
+
+      searchButton.addEventListener("click", function() {
+        const query = searchInput.value;
+
+        if (query.trim() === "") {
+          alert("Please enter a search query");
+          return;
+        }
+
+        fetch(`${elasticsearchURL}/news/_search`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: {
+              multi_match: {
+                query: query,
+                fields: ["headline", "description"],
+              },
+            },
+          }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          const hits = data.hits.hits;
+          resultsDiv.innerHTML = "";
+          hits.forEach(hit => {
+            const resultItem = document.createElement("div");
+            resultItem.innerHTML = `<h3>${hit._source.headline}</h3><p>${hit._source.description}</p>`;
+            resultsDiv.appendChild(resultItem);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
