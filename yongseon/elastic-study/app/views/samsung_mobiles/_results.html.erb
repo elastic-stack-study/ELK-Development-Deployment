@@ -1,0 +1,22 @@
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Image</th>
+  <th>Storage</th>
+  <th>Price</th>
+</tr>
+</thead>
+<tbody>
+<% @mobiles.each do |mobile| %>
+  <tr>
+    <td><%= mobile.name %></td>
+    <td style="text-align: center"><img src="<%= mobile.imgURL %>" style="width: 20%; height: 20%;"></td>
+    <td>
+      <%= mobile.storage %>
+    </td>
+    <td>
+      <%= mobile.price %>
+    </td>
+  </tr>
+<% end %>
+</tbody>
