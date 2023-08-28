@@ -18,8 +18,8 @@
 - 5주차: 각자 Elastic Search를 활용한 검색기능 구현해보기
 - 6주차: 데이오프
 - 7주차: 로그스태시 발표(이론: 최용환, 실무: 이용선)
-- 8주차: 로그스태시 실습
 - 8주차: 비츠 유영훈
+- 9주차: 로그스태시 실습
 - 9주차: 키바나(홍창형, 오원종)
 - 10주차: 키바나 
 - 11주차: 엘라스틱 서치 딥다이브(엄인국) 
@@ -32,3 +32,5 @@
 4. [엘라스틱서치 기본](https://yanychoi.notion.site/3-1-ES-c8447a72b70a48a0b690637acdafc9f4?pvs=4)
 5. [엘라스틱서치 검색](https://simuruk.notion.site/41e14b827f8b4fb8bf1327c1bf7270da?pvs=4)
 6. [엘라스틱서치 집계](https://www.notion.so/acb62390457b406d98b1322430ad3df6)
+7. [로그스태시 개념](https://yanychoi.notion.site/Logstash-8eb2b9660b6e4300bd495613649a881c?pvs=4)
+8. [로그스태시 활용](https://codediary21.tistory.com/141)
