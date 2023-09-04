@@ -34,3 +34,4 @@
 6. [엘라스틱서치 집계](https://www.notion.so/acb62390457b406d98b1322430ad3df6)
 7. [로그스태시 개념](https://yanychoi.notion.site/Logstash-8eb2b9660b6e4300bd495613649a881c?pvs=4)
 8. [로그스태시 활용](https://codediary21.tistory.com/141)
+9. [비츠 개념](https://simuruk.notion.site/7275100561c54779b95e35b810d41967?pvs=4)
