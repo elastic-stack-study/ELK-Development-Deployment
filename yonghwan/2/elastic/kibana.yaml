@@ -1,0 +1,59 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kibana-cert
+  namespace: istio-system # istio 설치경로
+spec:
+  secretName: kibana-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: kibana.poppin.life
+  dnsNames:
+  - kibana.poppin.life
+---
+#Gateway
+kind: Gateway
+apiVersion: networking.istio.io/v1beta1
+metadata:
+  name: kibana-gw
+  namespace: elastic
+spec:
+  servers:
+    - hosts:
+        - kibana.poppin.life
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        credentialName: kibana-tls
+        mode: SIMPLE
+    - hosts:
+        - kibana.poppin.life
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
+  selector:
+    app: istio-ingressgateway
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: kibana-vs
+  namespace: elastic
+spec:
+  hosts:
+  - kibana.poppin.life
+  gateways:
+  - kibana-gw
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 5601
+        host: kibana-kibana

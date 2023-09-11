@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apm-server
+  namespace: elastic
+  labels:
+    app: apm-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apm-server
+  template:
+    metadata:
+      labels:
+        app: apm-server
+    spec:
+      containers:
+      - name: apm-server
+        image: docker.elastic.co/apm/apm-server:8.9.1
+        ports:
+        - containerPort: 8200
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - name: apm-server-config
+          mountPath: /usr/share/apm-server/apm-server.yml
+          subPath: apm-server.yml
+          readOnly: true
+      volumes:
+      - name: apm-server-config
+        configMap:
+          name: apm-server-config
+          defaultMode: 420
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apm-server-config
+  namespace: elastic
+  labels:
+    app: apm-server
+data:
+  apm-server.yml: |
+    apm-server:
+      host: "0.0.0.0:8200"
+    output.elasticsearch:
+      hosts: ["https://elasticsearch-svc:9200"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apm-server-svc
+  namespace: elastic
+  labels:
+    app: apm-server
+spec:
+  ports:
+    - port: 8200
+      name: http
+      protocol: TCP
+  selector:
+    app: apm-server
