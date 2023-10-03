@@ -36,3 +36,5 @@
 8. [로그스태시 활용](https://codediary21.tistory.com/141)
 9. [비츠 개념](https://simuruk.notion.site/7275100561c54779b95e35b810d41967?pvs=4)
 10. [한글 토크나이저 분석](https://simuruk.notion.site/simuruk/274e89930d65400a80449ec15cbe49ac)
+11. [키바나 챕터1](https://wonjongoh.notion.site/3a01946cfd554da5b7d0b0506923a86a?pvs=4)
+12. [키바나 챕터2](https://frost-class-aac.notion.site/7f752c16b75945999257be2a40e40b19?pvs=4)
